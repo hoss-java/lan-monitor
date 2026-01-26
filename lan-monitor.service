@@ -1,0 +1,6 @@
+[Unit]
+Description=LAN monitor - check hosts and notify on changes
+
+[Service]
+Type=oneshot
+ExecStart=%h/.bin/lan-monitor.sh
