@@ -42,3 +42,21 @@ gantt
 > # Reports:
 > *
 > </details>
+
+## 001-0002
+> **Fix bugs and improve notifications.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
+> <details open>
+>     <summary>Details</summary>
+> The goal of this card is to fix notification body text bugs and make notifies periodic.
+> 
+> # DOD (definition of done):
+> Notfiy works.
+> Notifiations are repeted if a sever still is not available.
+> 
+> # TODO:
+> - [x] 1. Fix body texts
+> - [x] 2. Add a mechanism to repeat notifying if a server is not back
+> 
+> # Reports:
+> *
+> </details>
