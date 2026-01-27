@@ -6,7 +6,7 @@ Robots: noindex,nofollow
 Template: index
 ---
 
-# %GITNAME%
+# lan-monitor
 
 ## Analyzing all parts
 
