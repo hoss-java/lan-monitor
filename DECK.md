@@ -26,8 +26,8 @@ gantt
 # 1 - lan-monitor
 
 ## 001-0001
-> **Add deck board to repo.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
-> <details open>
+> **Add deck board to repo.** ![status](https://img.shields.io/badge/status-DONE-brightgreen)
+> <details >
 >     <summary>Details</summary>
 > The goal of this card is add git-deck to the repo.
 > 
@@ -44,8 +44,8 @@ gantt
 > </details>
 
 ## 001-0002
-> **Fix bugs and improve notifications.** ![status](https://img.shields.io/badge/status-ONGOING-yellow)
-> <details open>
+> **Fix bugs and improve notifications.** ![status](https://img.shields.io/badge/status-DONE-brightgreen)
+> <details >
 >     <summary>Details</summary>
 > The goal of this card is to fix notification body text bugs and make notifies periodic.
 > 
