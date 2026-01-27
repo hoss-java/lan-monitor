@@ -4,10 +4,11 @@
 # - If ~/.lan-monitor is missing: send one notification "No hosts configured" once, then do nothing afterwards.
 # - Otherwise: read hosts (ignore blank lines/comments), ping each, notify only when the set of unavailable hosts changes.
 # - State stored in ~/.cache/lan-monitor/unavailable_list and ~/.cache/lan-monitor/notified_no_hosts
-
 PING_OPTS="-c1 -W1"
 STATE_DIR="$HOME/.cache/lan-monitor"
 STATE_FILE="$STATE_DIR/unavailable_list"
+REMINDER_FILE="$STATE_DIR/riminder"
+REMINDER_COUNTER=10
 NOHOST_FLAG="$STATE_DIR/notified_no_hosts"
 HOSTS_FILE="$HOME/.lan-monitor"
 
@@ -49,11 +50,22 @@ UNAVAILABLE=$(
   done | sort
 )
 
+REMINDER=0
+[ -f "$REMINDER_FILE" ] && \
+    REMINDER="$(cat "$REMINDER_FILE" 2>/dev/null || true)"
+((REMINDER++))
+if [ "$REMINDER" -gt "$REMINDER_COUNTER" ]; then
+    REMINDER=0
+    [ -f "$STATE_FILE" ] && \
+        rm "$STATE_FILE"
+fi
+printf '%s\n' "$REMINDER" > "$REMINDER_FILE"
+
 OLD_UNAVAILABLE="$(cat "$STATE_FILE" 2>/dev/null || true)"
 
 if [ "$UNAVAILABLE" != "$OLD_UNAVAILABLE" ]; then
   if [ -n "$UNAVAILABLE" ]; then
-    BODY="$(echo "$UNAVAILABLE" | sed 's/^/- /')"
+    BODY="$(echo "$UNAVAILABLE" | sed 's/^//')"
     notify-send -u critical "LAN alert: hosts unreachable" "$BODY"
   else
     notify-send -u normal "LAN: all hosts reachable" "Previously unavailable hosts have recovered"
